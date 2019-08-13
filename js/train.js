@@ -26,10 +26,10 @@ $("#add-train-btn").on("click",function(event) {
     event.preventDefault();
 
     // Collect user inputs
-    var trainName = $("train-name-input").val().trim();
-    var trainDestination = $("destination-input").val().trim();
-    var trainTime = $("first-time-input").val().trim();
-    var trainFrequency =$("frequency-input").val().trim();
+    var trainName = $("#train-name-input").val().trim();
+    var trainDestination = $("#destination-input").val().trim();
+    var trainTime = $("#first-time-input").val().trim();
+    var trainFrequency =$("#frequency-input").val().trim();
 
     // Make temporary local object to store train data
     var newTrain = {
@@ -45,14 +45,14 @@ $("#add-train-btn").on("click",function(event) {
     // Console log everything to log
     console.log(newTrain.name);
     console.log(newTrain.destination);
-    console.log(newTrain.destination);
+    console.log(newTrain.time);
     console.log(newTrain.frequency);
 
     alert("Train added successully!");
 
     // Clear all the text boxes
-    $("train-name-input").val("");
-    $("destination-input").val("");
-    $("first-time-input").val("");
-    $("frequency-input").val("");
+    $("#train-name-input").val("");
+    $("#destination-input").val("");
+    $("#first-time-input").val("");
+    $("#frequency-input").val("");
 });

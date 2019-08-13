@@ -8,8 +8,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <!-- CSS -->
-    <!-- <link rel="stylesheet" type="text/css" href="/css/reset.css"> -->
-    <!-- <link rel="stylesheet" type="text/css" href="/css/style.css"> -->
+    <!-- <link rel="stylesheet" type="text/css" href="css/reset.css"> -->
+    <!-- <link rel="stylesheet" type="text/css" href="css/style.css"> -->
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.4.1.js"
+    integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
     <!-- Firebase -->
     <script src="https://www.gstatic.com/firebasejs/6.3.5/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
@@ -67,7 +70,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="first-time-input">First Train Time (HH:mm - Military Time)</label>
-                                <input class="form-control" id="first-time-input" placeholder="08:15" type="number">
+                                <input class="form-control" id="first-time-input" placeholder="08:15" type="text">
                             </div>
                             <div class="form-group">
                                 <label for="frequency-input">Frequency (min)</label>
@@ -83,7 +86,7 @@
 
     </div>
 
-    <script src="/js/train.js"></script>
+    <script src="js/train.js"></script>
 </body>
 
 </html>
