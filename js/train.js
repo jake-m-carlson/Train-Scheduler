@@ -56,3 +56,29 @@ $("#add-train-btn").on("click",function(event) {
     $("#first-time-input").val("");
     $("#frequency-input").val("");
 });
+
+// Pull new train from database, make new row in table
+database.ref().on("child-added", function(childSnapshot) {
+    console.log(childSnapshot.val());
+
+    // Store data in a variable
+    var trainName = childSnapshot.val().name;
+    var trainDestination = childSnapshot.val().destination;
+    var trainTime = childSnapshot.val().time;
+    var trainFrequency = childSnapshot.val().frequency;
+    
+    var timeArray = trainTime.split(":")
+    var trainCurrentTime = moment()
+        .hours(timeArray[0])
+        .minutes(timeArray[1]);
+    var maxMoment = moment.max(moment(), trainCurrentTime);
+    var trainMinutes;
+    var trainArrival;
+
+    // Console log train info
+    console.log(trainName);
+    console.log(trainDestination);
+    console.log(trainTime);
+    console.log(trainFrequency);
+
+});
