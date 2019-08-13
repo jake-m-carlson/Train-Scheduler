@@ -58,7 +58,7 @@ $("#add-train-btn").on("click",function(event) {
 });
 
 // Pull new train from database, make new row in table
-database.ref().on("child-added", function(childSnapshot) {
+database.ref().on("child_added", function(childSnapshot) {
     console.log(childSnapshot.val());
 
     // Store data in a variable
@@ -66,7 +66,7 @@ database.ref().on("child-added", function(childSnapshot) {
     var trainDestination = childSnapshot.val().destination;
     var trainTime = childSnapshot.val().time;
     var trainFrequency = childSnapshot.val().frequency;
-    
+
     var timeArray = trainTime.split(":")
     var trainCurrentTime = moment()
         .hours(timeArray[0])
@@ -80,5 +80,37 @@ database.ref().on("child-added", function(childSnapshot) {
     console.log(trainDestination);
     console.log(trainTime);
     console.log(trainFrequency);
+
+    // Ex how to find out Next Arrival & Minutes Away
+    // First train leaves at 9:00 am
+    // Assume train comes every 30 min
+    // Assume time is 10:27 am
+    // When would next train arrive?
+    // 10:30 am, 3 min away
+
+    // Math
+    // 27 - 00 = 27
+    // 27 % 30 = .9 (modulus = .9 * 30 = 27)
+    // 30 - 27 = 3 min away
+    // 3 + 10:27 am = 10:30 am next train
+
+    // if/ else statments for arrival train
+    if (maxMoment === trainCurrentTime) {
+        trainArrival = trainCurrentTime.format("hh:mm A");
+        trainMinutes = trainCurrentTime.diff(moment(), "minutes");
+    } else {
+        // find answer for modulus, and minutes away 
+        var diffTime = moment().diff(trainCurrentTime, "minutes");
+        var trainRemain = diffTime % trainFrequency;
+        trainMinutes = trainFrequency - trainRemain;
+        // find arrival time 
+        trainArrival = moment()
+        .add(trainMinutes, "m")
+        .format("hh:mm A");
+    }
+    console.log("trainMinutes:", trainMinutes);
+    console.log("trainArrival:", trainArrival);
+
+    
 
 });
