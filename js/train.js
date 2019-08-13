@@ -22,14 +22,14 @@ firebase.initializeApp(firebaseConfig);
 var database = firebase.database();
 
 // Create button to add train, push to database, push to table
-$("#add-train-btn").on("click",function(event) {
+$("#add-train-btn").on("click", function (event) {
     event.preventDefault();
 
     // Collect user inputs
     var trainName = $("#train-name-input").val().trim();
     var trainDestination = $("#destination-input").val().trim();
     var trainTime = $("#first-time-input").val().trim();
-    var trainFrequency =$("#frequency-input").val().trim();
+    var trainFrequency = $("#frequency-input").val().trim();
 
     // Make temporary local object to store train data
     var newTrain = {
@@ -57,8 +57,8 @@ $("#add-train-btn").on("click",function(event) {
     $("#frequency-input").val("");
 });
 
-// Pull new train from database, make new row in table
-database.ref().on("child_added", function(childSnapshot) {
+// Pull new train from database
+database.ref().on("child_added", function (childSnapshot) {
     console.log(childSnapshot.val());
 
     // Store data in a variable
@@ -94,23 +94,35 @@ database.ref().on("child_added", function(childSnapshot) {
     // 30 - 27 = 3 min away
     // 3 + 10:27 am = 10:30 am next train
 
+
+
     // if/ else statments for arrival train
     if (maxMoment === trainCurrentTime) {
         trainArrival = trainCurrentTime.format("hh:mm A");
         trainMinutes = trainCurrentTime.diff(moment(), "minutes");
     } else {
-        // find answer for modulus, and minutes away 
+        // Calculate how many minutes away
+        // find answer for modulus
         var diffTime = moment().diff(trainCurrentTime, "minutes");
         var trainRemain = diffTime % trainFrequency;
         trainMinutes = trainFrequency - trainRemain;
-        // find arrival time 
+        // Calculate next train arrival 
         trainArrival = moment()
-        .add(trainMinutes, "m")
-        .format("hh:mm A");
+            .add(trainMinutes, "m")
+            .format("hh:mm A");
     }
     console.log("trainMinutes:", trainMinutes);
     console.log("trainArrival:", trainArrival);
 
-    
+    // Make new row in table
+    var newRow = $("<tr>").append(
+        $("<td>").text(trainName),
+        $("<td>").text(trainDestination),
+        $("<td>").text(trainFrequency),
+        $("<td>").text(trainArrival),
+        $("<td>").text(trainMinutes),
+    );
+
+    $("#train-schedule > tbody").append(newRow);
 
 });
