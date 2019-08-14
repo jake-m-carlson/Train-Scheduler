@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title></title>
+    <title>Train Scheduler</title>
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -18,19 +18,28 @@
     <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
     <!-- Moment -->
     <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
-    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Red+Hat+Text&display=swap" rel="stylesheet">
+    <style>
+    body {
+        color:aquamarine;
+        background-color: darkolivegreen;
+        font-family: 'Red Hat Text', sans-serif;
+        font-weight: bold;
+    }
+    </style>
 </head>
 
 <body>
     <div class="container">
         <div class="jumbotron" style="background-color: chartreuse; color:darkslategray">
-            <h1 class="text-center">Anytime is Train Time</h1>
+            <h1 class="text-center" style="font-weight: bolder">Anytime is Train Time</h1>
             <h3 class="text-center">Choo Choo is coming around the corner</h3>
         </div>
 
         <div class="row">
             <div class="col-md-12">
-                <div class="card-mb-4" style="border: solid black 1px">
+                <div class="card-mb-4" style="border: solid black 1px; background-color: grey">
                     <div class="card-header">Current Train Schedule</div>
                     <div class="card-body">
                         <table class="table table-sm table-hover" id="train-schedule">
@@ -55,7 +64,7 @@
 
         <div class="row">
             <div class="col-md-12">
-                <div class="card-mb-4" style="border:black solid 1px">
+                <div class="card-mb-4" style="border:black solid 1px; background-color: grey">
                     <div class="card-header">Add Train</div>
                     <div class="card-body">
                         <form>
