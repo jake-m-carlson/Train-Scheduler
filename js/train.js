@@ -123,6 +123,9 @@ database.ref().on("child_added", function (childSnapshot) {
         $("<td>").text(trainMinutes),
     );
 
-    $("#train-schedule > tbody").append(newRow);
+    $("#train-schedule").append(newRow);
+    // line below was where line 126 was but double printed in the table, not sure why? 
+    // $("#train-schedule > tbody").append(newRow);
+
 
 });
